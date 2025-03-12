@@ -5,35 +5,19 @@ import DisplayInfor from "./DisplayInfor";
 
 class MyComponent extends React.Component {
 
-
-    // handleClick(event) {
-    //     const ten = (this.state.name)
-    //     console.log(ten)
-    //     console.log(event)
-    //     this.setState({
-    //         name: 'Thuận'
-    //     })
-
-    // }
-    // handleonMouse(event) {
-    //     console.log(event)
-    // }
-
-
-
-    // handleOnChangeAge(event) {
-    //     this.setState({
-    //         age: event.target.value
-    //     })
-
-    // }
-
+    state = {
+        listUsers: [
+            { id: 1, name: 'châu', age: 20 },
+            { id: 2, name: 'thuận', age: 30 },
+            { id: 3, name: 'ngân', age: 40 },
+        ]
+    }
 
     render() {
         return (
             <div>
                 <Userinfor />
-                <DisplayInfor name='châu' age='60' />
+                <DisplayInfor listUsers={this.state.listUsers} />
             </div >
         )
     }
