@@ -3,6 +3,7 @@ import AddUserinfor from "./AddUserinfor";
 import DisplayInfor from "./DisplayInfor";
 
 
+
 class MyComponent extends React.Component {
 
     state = {
@@ -18,21 +19,29 @@ class MyComponent extends React.Component {
         ]
     }
     handleAddNewUser = (userObj) => {
-        console.log(">>>>> check parent", this.state.listUsers)
+        console.log(">>>>> check parent", this.state.listUsersCD)
         this.setState({
             listUsers: [userObj, ...this.state.listUsers]
         })
     }
+    handleDeleteUser = (userid) => {
+        let listUsersClone = this.state.listUsers
+        listUsersClone = listUsersClone.filter(item => item.id !== userid)
+        this.setState({
+            listUsers: listUsersClone
+        })
+    }
     render() {
         return (
-            <div>
+            <>
                 <AddUserinfor
                     handleAddNewUser={this.handleAddNewUser}
                 />
                 <DisplayInfor
                     listUsers={this.state.listUsers}
+                    handleDeleteUser={this.handleDeleteUser}
                 />
-            </div >
+            </>
         )
     }
 }

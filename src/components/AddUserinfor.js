@@ -1,5 +1,6 @@
 import React from "react";
 
+
 class AddUserinfor extends React.Component {
     state = {
         name: '',
