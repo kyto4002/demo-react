@@ -9,8 +9,6 @@ import { Outlet, Link } from "react-router-dom";
 
 
 
-
-
 const App = () => {
 
   return (
