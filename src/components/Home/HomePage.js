@@ -1,4 +1,5 @@
 import videoHomepage from '../../assets/video-homepage.mp4'
+
 const HomePage = (props) => {
     return (
         <div className="homepage-container">
@@ -13,7 +14,9 @@ const HomePage = (props) => {
                 <div className='title-3'>
                     <button>Get started—it's free</button>
                 </div>
+
             </div>
+
         </div>
     )
 }
