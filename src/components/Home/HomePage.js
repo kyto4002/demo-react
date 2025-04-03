@@ -14,9 +14,7 @@ const HomePage = (props) => {
                 <div className='title-3'>
                     <button>Get started—it's free</button>
                 </div>
-
             </div>
-
         </div>
     )
 }
