@@ -1,4 +1,5 @@
 import ModelCreateUser from "./ModelCreateUser"
+import "./ManageUser.scss"
 
 
 
