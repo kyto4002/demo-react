@@ -2,12 +2,21 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc'
+import axios from 'axios'
 
+function ModelCreateUser(props) {
+    // const [show, setShow] = useState(false);
+    const { show, setShow } = props
 
-function ModelCreateUser() {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false)
+        setEmail('')
+        setUsername('')
+        setPassword('')
+        setRole('USER')
+        setImage('')
+        setPreviewImage('')
+    }
     const handleShow = () => setShow(true);
 
     const [email, setEmail] = useState('')
@@ -24,15 +33,37 @@ function ModelCreateUser() {
         } else {
 
         }
+    }
 
-        console.log("Upload Image")
+    const handleSubmitCreateUser = () => {
+        // let data = {
+        //     email: email,
+        //     password: password,
+        //     username: username,
+        //     role: role,
+        //     userImage: image
+        // }
+
+
+        // alert('tao lao')
+
+        const data = new FormData();
+        data.append('email', email);
+        data.append('password', password);
+        data.append('username', username);
+        data.append('role', role);
+        data.append('userImage', image);
+
+        let res = axios.post('http://localhost:8081/api/v1/participant', data)
+        console.log('checkkkkk:', res)
+
     }
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            {/* <Button variant="primary" onClick={handleShow}>
                 Launch demo modal
-            </Button>
+            </Button> */}
 
             <Modal
                 show={show}
@@ -110,7 +141,7 @@ function ModelCreateUser() {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={() => handleSubmitCreateUser()}>
                         Save
                     </Button>
                 </Modal.Footer>

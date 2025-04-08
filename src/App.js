@@ -6,6 +6,7 @@ import MyComponent from './components/MyComponent';
 import React from 'react';
 import Header from './components/Header/Header';
 import { Outlet, Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
