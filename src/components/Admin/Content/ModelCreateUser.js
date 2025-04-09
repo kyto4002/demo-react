@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc'
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 function ModelCreateUser(props) {
     // const [show, setShow] = useState(false);
@@ -26,6 +27,7 @@ function ModelCreateUser(props) {
     const [image, setImage] = useState('')
     const [previewImage, setPreviewImage] = useState('')
 
+
     const handleUploadImage = (event) => {
         if (event.target.files[0]) {
             setPreviewImage(URL.createObjectURL(event.target.files[0]))
@@ -35,18 +37,29 @@ function ModelCreateUser(props) {
         }
     }
 
-    const handleSubmitCreateUser = () => {
-        // let data = {
-        //     email: email,
-        //     password: password,
-        //     username: username,
-        //     role: role,
-        //     userImage: image
-        // }
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
 
+    const handleSubmitCreateUser = async () => {
+        // //Validate
+        const isValiEmail = validateEmail(email)
+        if (!isValiEmail) {
+            // alert('invail Email')
+            toast.error('Invail Email')
+            return
+        }
 
-        // alert('tao lao')
+        if (!password) {
+            toast.error('Invail Password')
+            return
+        }
 
+        //Submit data
         const data = new FormData();
         data.append('email', email);
         data.append('password', password);
@@ -54,9 +67,16 @@ function ModelCreateUser(props) {
         data.append('role', role);
         data.append('userImage', image);
 
-        let res = axios.post('http://localhost:8081/api/v1/participant', data)
-        console.log('checkkkkk:', res)
+        let res = await axios.post('http://localhost:8081/api/v1/participant', data)
 
+        if (res.data && res.data.EC === 0) {
+            toast.success(res.data.EM)
+            handleClose()
+        }
+
+        if (res.data && res.data.EC !== 0) {
+            toast.error(res.data.EM)
+        }
     }
 
     return (
