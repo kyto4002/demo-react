@@ -21,8 +21,6 @@ const ManageUser = (props) => {
                 <div className="table-users-container">
                     table user
                     <ModelCreateUser show={showModalCreaterUser} setShow={setShowModalCreateUser} />
-
-
                 </div>
             </div>
         </div>
