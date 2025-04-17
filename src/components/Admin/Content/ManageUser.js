@@ -2,6 +2,7 @@ import ModelCreateUser from "./ModelCreateUser"
 import "./ManageUser.scss"
 import { FcPlus } from 'react-icons/fc'
 import { useState } from "react"
+import TableUser from "./TableUser"
 
 
 
@@ -19,7 +20,7 @@ const ManageUser = (props) => {
                     </button>
                 </div>
                 <div className="table-users-container">
-                    table user
+                    <TableUser />
                     <ModelCreateUser show={showModalCreaterUser} setShow={setShowModalCreateUser} />
                 </div>
             </div>
